@@ -18,6 +18,7 @@ function App() {
     const changeFilter =(nextFilter:FilterValuesType) => {
         setFilter(nextFilter)
     }
+
     const removeTask = (taskId: string) => {
         setTasks(tasks.filter(t => t.id !== taskId))
         // console.log(tasks)
@@ -32,6 +33,11 @@ function App() {
     setTasks([newTask, ...tasks])
     }
 
+    const changeTaskStatus =(taskId:string, newIsDoneValue:boolean) => {
+        setTasks(tasks.map(t=>t.id === taskId ? {...t, isDone:newIsDoneValue}:t))
+    }
+
+
     const getTasksForMe =(taskList:Array<TaskType>, filterValue:FilterValuesType)=>{
         switch (filterValue) {
             case "active":
@@ -43,24 +49,21 @@ function App() {
         }
     }
 
-
     const taskForWhatIWantToSee = getTasksForMe(tasks,filter)
-
     return (
         <div className="App">
             <ToDoList
                       title={toDoListTitle}
                       tasks={taskForWhatIWantToSee}
+                      filter={filter}
                       addTask={addTask}
                       removeTask={removeTask}
                       changeFilter={changeFilter}
+                      changeTaskStatus={changeTaskStatus}
+
             />
-
-
         </div>
-
     );
 }
-
 
 export default App;
