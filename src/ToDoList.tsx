@@ -64,7 +64,7 @@ const ToDoList: React.FC<toDoListPropsType> = (props: toDoListPropsType) => {
                            onChange={changeTaskStatus}/>
                     <span className={taskClasses}>{t.title}</span>
                 </div>
-                <button onClick={() => removeTask}>x</button>
+                <button onClick={removeTask}>x</button>
             </li>
         )
     })
